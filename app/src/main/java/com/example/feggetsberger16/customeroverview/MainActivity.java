@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -32,8 +33,27 @@ public class MainActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.listView);
         lv.setAdapter(mAdapter);
         bindAdapterToListView(lv);
-        //
-        SearchView s = findViewById(R.id.searchView);
+        SearchView sv = findViewById(R.id.searchView);
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if(customers.contains(query))
+                {
+                    mAdapter.getFilter().filter(query);
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Not found", Toast.LENGTH_LONG).show();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     private void bindAdapterToListView(ListView lv) {
