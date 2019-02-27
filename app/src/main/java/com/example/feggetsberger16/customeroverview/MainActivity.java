@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.listView);
         lv.setAdapter(mAdapter);
         bindAdapterToListView(lv);
+        //
         SearchView s = findViewById(R.id.searchView);
     }
 
