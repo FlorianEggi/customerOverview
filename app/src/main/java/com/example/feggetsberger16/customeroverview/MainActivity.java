@@ -27,13 +27,17 @@ public class MainActivity extends AppCompatActivity {
         printAssets();
         ListView lv = findViewById(R.id.listView);
         Customer[] custArr = (Customer[]) customers.toArray();
-        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, customers);
+        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, custArr);
         lv.setAdapter(adapter);
     }
 
     private Customer[] listToArray()
     {
-
+        Customer[] result = new Customer[customers.size()];
+        for (int i = 0; i < customers.size(); i++) {
+            result[i] = customers.get(i);
+        }
+        return result;
     }
 
     private void readAssets() {
