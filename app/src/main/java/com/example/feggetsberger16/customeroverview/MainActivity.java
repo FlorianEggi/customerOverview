@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Error");
-            //test
         }
     }
     private InputStream getInputStreamForAsset(String filename) {
